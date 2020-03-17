@@ -1,0 +1,7 @@
+<button mat-flat-button color="primary" (click)="onPrev()" [disabled]="isFirst">
+  <span class="prev">Prev</span>
+</button>
+<p class="count">{{ page + 1 }} of {{ count }}</p>
+<button mat-flat-button color="primary" (click)="onNext()" [disabled]="isLast">
+  <span class="next">Next</span>
+</button>

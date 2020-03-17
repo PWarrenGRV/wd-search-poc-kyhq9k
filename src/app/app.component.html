@@ -1,0 +1,77 @@
+<p>Try searching for a dog or trainer by name.</p>
+<input
+  class="search-field"
+  type="search"
+  (input)="onSearchChange($event.target.value)"
+/>
+<div>
+  <label for="onlyRacing">
+    Only Racing Dogs
+    <input
+      id="onlyRacing"
+      type="checkbox"
+      (input)="onOnlyRacingChange($event.target.checked)"
+      [checked]="onlyRacing"
+    />
+  </label>
+</div>
+<!-- <div class="search-result">
+    {{ searchResult | json }}
+  </div> -->
+<div *ngIf="countPages$ | async as countPages">
+  <app-paging
+    (pageChange)="onPageChange($event)"
+    [count]="countPages"
+    [page]="currentPage"
+  ></app-paging>
+
+  <div class="search-results">
+    <div class="search-row" *ngFor="let row of searchResult$ | async">
+      <div class="search-row-type">{{ row.type }}</div>
+      <ng-container [ngSwitch]="row.type">
+        <div class="search-row-value trainer" *ngSwitchCase="Result.Trainer">
+          <div class="trainer-name">
+            {{ row.fullName }}
+          </div>
+          <address class="trainer-address">{{ row.address }}</address>
+        </div>
+        <div class="search-row-value dog" *ngSwitchCase="Result.Dog">
+          <div class="dog-name">
+            <a [href]="dogUrl(row)">{{ row.name }}</a>
+          </div>
+          <div class="dog-trainer">
+            <a [href]="trainerUrl(row)">{{ row.trainerName }}</a>
+          </div>
+        </div>
+        <div class="search-row-value other" *ngSwitchDefault>
+          UNKNOWN
+          <div class="json">
+            {{ row._source | json }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <!-- 
+  <table>
+    <thead>
+      <tr>
+        <th>Dog</th>
+        <th>Trainer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of searchResult$ | async">
+        <td>
+          <a [href]="dogUrl(row)">{{ row | json }}</a>
+        </td>
+        <td>
+          <a [href]="trainerUrl(row)">
+            {{ row.trainerName }}
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+</div>

@@ -1,0 +1,33 @@
+p {
+  font-family: Lato;
+}
+
+.search-field {
+  width: 400px;
+  height: 3em;
+}
+
+.json {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 1em 0;
+  border: 1px solid;
+  background-color: beige;
+}
+
+.search-row {
+  display: flex;
+  border-bottom: 1px solid black;
+  align-items: center;
+}
+
+.search-row-type {
+  padding: 1em;
+  min-width: 6ex;
+}
+
+.dog-trainer,
+.trainer-address {
+  font-size: 0.8em;
+}
